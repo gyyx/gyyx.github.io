@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "`CocoaPods` 环境安装"
+title:  "CocoaPods 环境安装"
 date:   2020-07-03 09:40:27 +0800
 categories: ios
 ---
