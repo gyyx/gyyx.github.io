@@ -65,3 +65,10 @@ docker run --rm -p 4000:4000 -v know_dir:/opt/know gyyx/jekyll
 ~~~ shell
 ~ $ git push origin zhangsan
 ~~~
+
+接下来我们去往WEB界面进行PR申请。
+
+1. 打开[https://github.com/gyyx/gyyx.github.io/pulls](https://github.com/gyyx/gyyx.github.io/pulls)
+2. 点击 New pull request创建新的PR申请
+3. 在分支请求合并界面，右侧选择你名字的分支，左侧选择master分支。查看待合并的内容正确。点击 Create pull request 按钮
+4. 联系管理员进行PR审核，审核通过后，即可通过 [http://know.gydev.cn](https://know.gydev.cn)查看到最终结果
