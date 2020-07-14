@@ -30,7 +30,6 @@ github_username:  gyyx
 theme: minima
 plugins:
   - jekyll-feed
-  - jekyll-paginate
 
 markdown: kramdown
 kramdown:
