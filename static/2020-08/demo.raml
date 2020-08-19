@@ -1,0 +1,37 @@
+#%RAML 1.0
+title: stage game api # 标题说明该文档的主要功能，比如我们的示例是社区的计费接口文档
+description: 新版本社区的支付部门接口文档 # 可选参数。对于title的补充
+version: v1.0 # 可选参数。说明该接口的版本号，我们的接口版本从1.0开始，
+baseUri: https://api.gyyx.cn # 可选参数。描述整个文档请求的URL基础域名和协议
+mediaType: application/json # 可选参数。描述整个文档的返回参数格式
+
+/game:
+  /serverlist/{gameid}/: # 此为下一级节点
+    uriParameters: # 为URL中的参数提供说明
+      gameid:
+        type: integer
+        example: 2
+    get: # 请求的方法，可以为get,post,put,delete  
+      headers: # 需要提交http header时的设置
+        version:
+          type: string
+          example: v1.0
+      queryParameters: # 查询的参数
+        serverstatus: # 参数名
+          type: string # 数据类型，支持的格式string,number,integer,date,boolean,file
+          example: open # 示例值
+      responses: # 应答结果节点
+        200: # 状态码
+          body: # 主体
+            example: | # 返回结果的示例部分,如需要多行示例，可以用空格+|然后从下一行开始书写返回的示例
+              {
+                "success": true,
+                "data": [{"code":1,"serverName":"北京古都","netTypeCode":1}]
+              }
+        404: # 可以设置多个状态码
+          body:
+            example: |
+              {
+                "success": false,
+                "data": []
+              }

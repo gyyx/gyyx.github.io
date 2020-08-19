@@ -249,10 +249,9 @@ java项目
 
 1. 【强制】url中不出现大写字母
 2. 【强制】url中不出现版本号，如果需要做版本号识别放在http header中。K:version,V:1.0
-2. 如果需要分割单词使用-不用_
-3. 不出现过深级别的url，避免过于难维护
-4. 根据浏览器的限制，url的最大长度不超过200个字符。
-
+3. 如果需要分割单词使用-不用_
+4. 不出现过深级别的url，避免过于难维护
+5. 根据浏览器的限制，url的最大长度不超过1000个字符。
 
 ### 连接串
 
@@ -274,17 +273,13 @@ java项目
    1. 要做关键字过滤防止提交不良信息
    2. 要防止用户写入JS脚本恶意活的其他用户数据。
 
-
 ## 附件
 
 ### 类库引用版本指南
 
 * 验证码类库
 
-    ``` xml
-    <dependency>
-        <artifactId>captcha-module-sdk</artifactId>
-        <groupId>cn.gyyx.validation</groupId>
-        <version>1.1.6</version>
-    </dependency>
-    ```
+    | 库功能 | groupId | artifactId | version | 备注 |
+    | :---: | :-----: | :--------: | :---: | :-: |
+    | 验证码 | cn.gyyx.validation | captcha-module-sdk | 1.1.6 | |
+    | springboot | org.springframework.boot | spring-boot-starter-parent | 2.2.9.RELEASE | 整个组都需要使用2.2.9.RELEASE版本 |
