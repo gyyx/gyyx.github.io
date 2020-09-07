@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "修复OCLint在Jenkins代码分析环节失败"
-date:   2020-07-03 09:40:27 +0800
+title:  "修复OCLint在Jenkins代码检查环节失败"
+date:   2020-09-07 12:18:00 +0800
 categories: ios
 ---
 
