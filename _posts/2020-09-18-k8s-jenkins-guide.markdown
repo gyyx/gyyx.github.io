@@ -35,7 +35,7 @@ categories: dev
 ## 构建的具体实现
 
 ### Docker项目，参考以下流程图
-    ![产生版本号需要的前提](/static/2020-09/产生版本号需要的前提.png)
+![Docker项目](/static/2020-09/Docker构建流程.png)
 
 ### 微信小程序项目，需要在Jenkins中额外安装2个插件，如下
 	插件一：description setter，用于在给构建的历史记录中添加描述，这也就是我们要把二维码图片的html标签拍在的地方
