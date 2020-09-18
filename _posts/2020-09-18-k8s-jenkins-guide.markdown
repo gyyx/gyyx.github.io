@@ -48,6 +48,10 @@ categories: dev
         4. 在Jenkinsfile调用触发器，
                 成功的时候：给构建历史打上图片描述，请求地址http://xxx.xxx.xx:8080/job/构建名称/构建编号/submitDescription，内容为description=<img src=\"http://xx.xx.xx.xx:8080/${JOB_NAME}_${BUILD_ID}.png\" width=\"200\" height=\"200\" >
                 失败的时候：发送邮件
+				
+
+### .Net项目，参考以下流程图
+![.Net项目](/static/2020-09/Net构建流程.png)
 
 
 
