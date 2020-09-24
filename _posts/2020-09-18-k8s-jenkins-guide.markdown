@@ -34,24 +34,9 @@ categories: dev
 
 ## 构建的具体实现
 
-### Docker项目，参考以下流程图
-![Docker项目](/static/2020-09/Docker构建流程.png)
+### Java项目，参考以下流程图
+![Java项目](/static/2020-09/Docker构建流程.png)
 
-### 微信小程序项目，需要在Jenkins中额外安装2个插件，如下
-	插件一：description setter，用于在给构建的历史记录中添加描述，这也就是我们要把二维码图片的html标签拍在的地方
-	插件二：OWASP Markup Formatter Plugin，这个主要是要在Jenkins的全局安全配置的标记格式器中启动Safe HTML，要不上面二维码图片的html标签就会显示为纯文本了
-
-	实现过程：
-        1. 杀掉构建机器上所有wechatweb的进程；
-        2. 启动微信开发者工具在3000端口；
-        3. 调用微信开发者工具cli -p 工程目录来预览二维码，并wget到构建机器的Tomcat的ROOT下，格式为构建项目名称_构建编号.png；
-        4. 在Jenkinsfile调用触发器，
-                成功的时候：给构建历史打上图片描述，请求地址http://xxx.xxx.xx:8080/job/构建名称/构建编号/submitDescription，内容为description=<img src=\"http://xx.xx.xx.xx:8080/${JOB_NAME}_${BUILD_ID}.png\" width=\"200\" height=\"200\" >
-                失败的时候：发送邮件
-				
-
-### .Net项目，参考以下流程图
-![.Net项目](/static/2020-09/Net构建流程.png)
 
 
 
