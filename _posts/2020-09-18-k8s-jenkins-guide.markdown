@@ -38,7 +38,8 @@ categories: dev
 ### 当同一仓库下包含多个站点时，实现方式有所不同。
 项目根目录下的Jenkinsfile需要配置projectlist，实现在构建时选择哪个站点进行构建，文件内容如下：
 ![Jenkinsfile](/static/2020-09/Jenkinsfile.png)
-
+project-list.yaml的key和value分别对应的是下拉选项的显示项和实际值，内容如下：
+![project-list](/static/2020-09/project-list.png)
 
 
 
