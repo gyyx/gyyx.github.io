@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "K8S-Jenkins-使用指南"
-date:   2020-09-18 13:59:18 +0800
+date:   2020-09-24 13:59:18 +0800
 categories: dev
 ---
 
@@ -12,7 +12,7 @@ categories: dev
 
 最近我们构建和部署的方式与原来相比，已经大不相同。首先，Java项目（产生war文件）不在具体的节点机器（实体机或者虚拟机）上进行构建，而是采用Docker的pod（容器），构建结束，进行回收，其余项目依旧采用节点机器构建模式。
 其次，构建脚本模式也发生了改变，对于编写者而言，基本上不再需要具有Pipelines语法知识作为前提，而是可以通过配置json或者yaml文件就可以实现构建的具体步骤，具体参考
-* [jenkins-json-build](https://github.com/sunweisheng/jenkins-json-build)，在这里仅做讲述有关现在正在使用的整套CI\CD流程。
+* [jenkins-json-build](http://git.gyyx.cn/lib/cn-gyyx-jenkins-libraries.git)，在这里仅做讲述有关现在正在使用的整套CI\CD流程。
 
 ## 涉及系统及介绍
 
@@ -24,11 +24,9 @@ categories: dev
 5. 节点管理：将要使用到的机器通过Launch agents via SSH进行连接；
 
 ### 部署系统
-这是内部开发的一套系统，主要作为Jenkins 构建完成之后的操作流程，作用有以下几点
-1. 提供外部接口，实现为Jenkins中的某一阶段为Dockfile打标签时提供下版本号，目前为4位（0.0.0.0，第1位是项目版本，第2位是迭代版本，第3位是部署环境，第4位是部署原因），前提是需要在部署系统中进行相关的配置，参考下图；
+这是内部开发的一套系统，作用有以下几点
+1. 提供外部接口，实现为Jenkins中为Dockfile打标签阶段时提供下版本号，目前为4位（0.0.0.0，第1位是项目版本，第2位是迭代版本，第3位是部署环境，第4位是部署原因），前提是需要在部署系统中进行相关的配置，参考下图；
 2. 将打好标签的Dockerfile push到外网环境，以及进行跨部门的调用接口；
-3. 在进行非Docker项目部署时实现传送文件的目的；
-
     ![产生版本号需要的前提](/static/2020-09/产生版本号需要的前提.png)
 
 
@@ -36,7 +34,6 @@ categories: dev
 
 ### Java项目，参考以下流程图
 ![Java项目](/static/2020-09/Docker构建流程.png)
-
 
 
 
