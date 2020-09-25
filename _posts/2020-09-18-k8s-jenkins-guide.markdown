@@ -54,7 +54,7 @@ json文件都是相互独立的，可个性化配置，这也是和之前的构建方式不同的一个地方，之前
 	&ensp;&ensp;&ensp;&ensp;    I. COMMAND_STDOUT：执行命令行脚本并输出脚本的标准输出内容；  
 	&ensp;&ensp;&ensp;&ensp;    II. COMMAND_STATUS：执行命令行脚本并输出脚本的返回值（0代表成功，非0代表失败）；  
 	&ensp;&ensp;&ensp;&ensp;    III. COMMAND_STATUS_FOR：循环创建需要执行的脚本然后用COMMAND_STATUS方式执行；  
-&ensp;（4）、Script中的命令格式中要注意特殊字符的转义问题，例如在双引号中使用双引号，应该是"\""，如使用多行命令组合形式，可参考下面的一行；  
+&ensp;（4）、Script中的命令格式中要注意特殊字符的转义问题，例如在双引号中使用双引号，应该是"\\""，如使用多行命令组合形式，可参考下面的一行；  
 	&ensp;&ensp;&ensp;&ensp;    "docker-tag分支": "if [ $DEPLOY_BUILD ]; then version=\"$(curl ${projectoaurl}?user=${Jenkins@BUILD_USER}\\&domainname=${dockerAppName}\\&desc=${dockerImageServer_exter}/baseimages/${dockerImageName}:$version)\";cd ${ProjectRoot}/${jarFilePath};curl -fL -o ${ProjectRoot}/${jarFilePath}/Dockerfile http://10.12.54.1/Dockerfile;echo $version;docker build -t ${dockerImageServer_exter}/baseimages/${dockerImageName}:$version .;docker push ${dockerImageServer_exter}/baseimages/${dockerImageName}:$version;rm -rf ${ProjectRoot}/${jarFilePath}/Dockerfile; fi",
 
 ![jenkins-project](/static/2020-09/jenkins-project.png)
