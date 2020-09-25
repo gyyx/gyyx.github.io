@@ -50,7 +50,7 @@ json文件都是相互独立的，可个性化配置，这也是和之前的构建方式不同的一个地方，之前
 	&ensp;&ensp;&ensp;&ensp;    IV. 添加分发机10.14.200.5，需要添加3种类型（分发、测试、正式），其中测试和正式的需要配置 TomcatApp目录 和 Tomcat名称，值分别为/data/WEB/域名/website/和域名；  
 	&ensp;&ensp;&ensp;&ensp;    V. 更改数据库，update [dbo].[domain_tb] set is_support_docker = 1 where [domain] = '域名';  
 &ensp;（3）、其中“部署”集合下的对象中可包含多个部署方案，如上文提到的部署内网、部署外网等，每一个部署方案中的脚本执行类型分为COMMAND_STDOUT、COMMAND_STATUS、COMMAND_STATUS_FOR三种，根据需要设置成
-其中一种即可，下面有对3中类型的简要说明，详细可参考* [类型说明](https://github.com/sunweisheng/jenkins-json-build#Json%E6%96%87%E6%A1%A3%E6%A0%BC%E5%BC%8F%E5%8F%8A%E8%BF%90%E8%A1%8C%E6%96%B9%E5%BC%8F)
+其中一种即可，下面有对3中类型的简要说明，详细可参考* [类型说明](https://github.com/sunweisheng/jenkins-json-build#Json%E6%96%87%E6%A1%A3%E6%A0%BC%E5%BC%8F%E5%8F%8A%E8%BF%90%E8%A1%8C%E6%96%B9%E5%BC%8F)  
 	&ensp;&ensp;&ensp;&ensp;    I. COMMAND_STDOUT：执行命令行脚本并输出脚本的标准输出内容；  
 	&ensp;&ensp;&ensp;&ensp;    II. COMMAND_STATUS：执行命令行脚本并输出脚本的返回值（0代表成功，非0代表失败）；  
 	&ensp;&ensp;&ensp;&ensp;    III. COMMAND_STATUS_FOR：循环创建需要执行的脚本然后用COMMAND_STATUS方式执行；  
