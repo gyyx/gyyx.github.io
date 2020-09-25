@@ -38,7 +38,9 @@ categories: dev
 ### 当同一仓库下包含多个站点时，实现方式有所不同。
 项目根目录下的Jenkinsfile需要配置projectlist，实现在构建时选择哪个站点进行构建，文件内容如下：
 ![Jenkinsfile](/static/2020-09/Jenkinsfile.png)
-project-list.yaml的key和value分别对应的是下拉选项的显示项和实际值（参考下图），其中value的值，为仓库根目录下的子目录层级的文件夹名称，并且在其目录下要存在jenkins-project.json文件：
+project-list.yaml的key和value分别对应的是下拉选项的显示项和实际值（参考下图），其中value的值，为仓库根目录下的子目录层级的文件夹名称，并且在其目录下要存在jenkins-project.json文件，每一个想要构建的站点目录的下
+json文件都是相互独立的，可个性化配置，这也是和之前的构建方式不同的一个地方，之前都是仓库下仅存在一份jenkins-project.json文件，所有需要构建的站点的部署方案通通写在里面，而且绝大多数会存在2种，部署内网和部署外网，
+文件内容易重复、易混淆：
 ![project-list](/static/2020-09/project-list.png)
 
 
