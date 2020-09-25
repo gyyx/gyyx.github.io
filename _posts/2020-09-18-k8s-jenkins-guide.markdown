@@ -32,7 +32,7 @@ categories: dev
 ## 构建的具体实现
 
 ### 流程图如下
-![Java项目](/static/2020-09/Docker构建流程.png)
+![Java项目](/static/2020-09/Dockerbuild.png)
 
 ### 当同一仓库下包含多个站点时，实现方式有所不同。
 项目根目录下的Jenkinsfile需要配置projectlist，实现在构建时选择哪个站点进行构建，文件内容如下：
