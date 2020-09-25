@@ -44,11 +44,11 @@ json文件都是相互独立的，可个性化配置，这也是和之前的构建方式不同的一个地方，之前
 下面，针对某一个站点的jenkins-project.json配置文件做下说明
 （1）、文件全局语法需要满足json的key-value形式，其中value可为字符串或者对象；  
 （2）、RuntimeVariable中的变量PROJECT_VERSION为调用上文提到的部署接口发送HTTP Get请求来获得，拿到的结果为4位版本号，不过需要提前在部署系统中对${PROJECT_VERSION}进行相关配置，如下；  
-	I. 创建域名，分发机类型linux，自定义文件路径填写系统部的镜像路径；  
-	II. 为域名分配所属项目，如果没有，需要新建（创建完成后，记得还需要创建立项报告）；  
-	III. 在10.12.54.75的/data/JavaBuild/build 目录下创建和域名同名的文件夹，里面需要放置一个ROOT.war，可为空；  
-	IV. 添加分发机10.14.200.5，需要添加3种类型（分发、测试、正式），其中测试和正式的需要配置 TomcatApp目录 和 Tomcat名称，值分别为/data/WEB/域名/website/和域名；  
-	V. 更改数据库，update [dbo].[domain_tb] set is_support_docker = 1 where [domain] = '域名';  
+	    I. 创建域名，分发机类型linux，自定义文件路径填写系统部的镜像路径；  
+	    II. 为域名分配所属项目，如果没有，需要新建（创建完成后，记得还需要创建立项报告）；  
+	    III. 在10.12.54.75的/data/JavaBuild/build 目录下创建和域名同名的文件夹，里面需要放置一个ROOT.war，可为空；  
+	    IV. 添加分发机10.14.200.5，需要添加3种类型（分发、测试、正式），其中测试和正式的需要配置 TomcatApp目录 和 Tomcat名称，值分别为/data/WEB/域名/website/和域名；  
+	    V. 更改数据库，update [dbo].[domain_tb] set is_support_docker = 1 where [domain] = '域名';  
 ![jenkins-project](/static/2020-09/jenkins-project.png)
 
 
