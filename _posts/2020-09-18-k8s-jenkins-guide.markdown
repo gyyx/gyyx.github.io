@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "K8S-Jenkins-使用指南"
-date:   2020-09-24 13:59:18 +0800
+date:   2020-09-25 15:35:18 +0800
 categories: dev
 ---
 
