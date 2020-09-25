@@ -42,20 +42,20 @@ json文件都是相互独立的，可个性化配置，这也是和之前的构建方式不同的一个地方，之前
 文件内容易重复、易混淆
 ![project-list](/static/2020-09/project-list.png)
 下面，针对某一个站点的jenkins-project.json配置文件做下说明：  
-    （1）、文件全局语法需要满足json的key-value形式，其中value可为字符串或者对象；  
-    （2）、RuntimeVariable中的变量PROJECT_VERSION为调用上文提到的部署接口发送HTTP Get请求来获得，拿到的结果为4位版本号，不过需要提前在部署系统中对${PROJECT_VERSION}进行相关配置，如下；  
-        I. 创建域名，分发机类型linux，自定义文件路径填写系统部的镜像路径；  
-	&ensp;&ensp;&ensp;&ensp;    II. 为域名分配所属项目，如果没有，需要新建（创建完成后，记得还需要创建立项报告）；  
-	&ensp;&ensp;&ensp;&ensp;    III. 在10.12.54.75的/data/JavaBuild/build 目录下创建和域名同名的文件夹，里面需要放置一个ROOT.war，可为空；  
-	&ensp;&ensp;&ensp;&ensp;    IV. 添加分发机10.14.200.5，需要添加3种类型（分发、测试、正式），其中测试和正式的需要配置 TomcatApp目录 和 Tomcat名称，值分别为/data/WEB/域名/website/和域名；  
-	&ensp;&ensp;&ensp;&ensp;    V. 更改数据库，update [dbo].[domain_tb] set is_support_docker = 1 where [domain] = '域名';  
-    （3）、其中“部署”集合下的对象中可包含多个部署方案，如上文提到的部署内网、部署外网等，每一个部署方案中的脚本执行类型分为COMMAND_STDOUT、COMMAND_STATUS、COMMAND_STATUS_FOR三种，根据需要设置成
+1. 文件全局语法需要满足json的key-value形式，其中value可为字符串或者对象；  
+2. RuntimeVariable中的变量PROJECT_VERSION为调用上文提到的部署接口发送HTTP Get请求来获得，拿到的结果为4位版本号，不过需要提前在部署系统中对${PROJECT_VERSION}进行相关配置，如下；  
+   * 创建域名，分发机类型linux，自定义文件路径填写系统部的镜像路径；  
+   * 为域名分配所属项目，如果没有，需要新建（创建完成后，记得还需要创建立项报告）；  
+   * 在10.12.54.75的/data/JavaBuild/build 目录下创建和域名同名的文件夹，里面需要放置一个ROOT.war，可为空；  
+   * 添加分发机10.14.200.5，需要添加3种类型（分发、测试、正式），其中测试和正式的需要配置 TomcatApp目录 和 Tomcat名称，值分别为/data/WEB/域名/website/和域名；  
+   * 更改数据库，update [dbo].[domain_tb] set is_support_docker = 1 where [domain] = '域名';  
+3. 其中“部署”集合下的对象中可包含多个部署方案，如上文提到的部署内网、部署外网等，每一个部署方案中的脚本执行类型分为COMMAND_STDOUT、COMMAND_STATUS、COMMAND_STATUS_FOR三种，根据需要设置成
 其中一种即可，下面有对3中类型的简要说明，详细可参考* [类型说明](https://github.com/sunweisheng/jenkins-json-build#Json%E6%96%87%E6%A1%A3%E6%A0%BC%E5%BC%8F%E5%8F%8A%E8%BF%90%E8%A1%8C%E6%96%B9%E5%BC%8F)  
-	&ensp;&ensp;&ensp;&ensp;    I. COMMAND_STDOUT：执行命令行脚本并输出脚本的标准输出内容；  
-	&ensp;&ensp;&ensp;&ensp;    II. COMMAND_STATUS：执行命令行脚本并输出脚本的返回值（0代表成功，非0代表失败）；  
-	&ensp;&ensp;&ensp;&ensp;    III. COMMAND_STATUS_FOR：循环创建需要执行的脚本然后用COMMAND_STATUS方式执行；  
-    （4）、Script中的命令格式中要注意特殊字符的转义问题，例如在双引号中使用双引号，应该是"\\""，如使用多行命令组合形式，可参考下面的一行；  
-	&ensp;&ensp;&ensp;&ensp;    "docker-tag分支": "if [ $DEPLOY_BUILD ]; then version=\\"$(curl ${projectoaurl}?user=${Jenkins@BUILD_USER}\\&domainname=${dockerAppName}\\&desc=${dockerImageServer_exter}/baseimages/${dockerImageName}:$version)\\";cd ${ProjectRoot}/${jarFilePath};curl -fL -o ${ProjectRoot}/${jarFilePath}/Dockerfile http://10.12.54.1/Dockerfile;echo $version;docker build -t ${dockerImageServer_exter}/baseimages/${dockerImageName}:$version .;docker push ${dockerImageServer_exter}/baseimages/${dockerImageName}:$version;rm -rf ${ProjectRoot}/${jarFilePath}/Dockerfile; fi",
+   * COMMAND_STDOUT：执行命令行脚本并输出脚本的标准输出内容；  
+   * COMMAND_STATUS：执行命令行脚本并输出脚本的返回值（0代表成功，非0代表失败）；  
+   * COMMAND_STATUS_FOR：循环创建需要执行的脚本然后用COMMAND_STATUS方式执行；  
+4. Script中的命令格式中要注意特殊字符的转义问题，例如在双引号中使用双引号，应该是"\\""，如使用多行命令组合形式，可参考下面的一行；  
+   * "docker-tag分支": "if [ $DEPLOY_BUILD ]; then version=\\"$(curl ${projectoaurl}?user=${Jenkins@BUILD_USER}\\&domainname=${dockerAppName}\\&desc=${dockerImageServer_exter}/baseimages/${dockerImageName}:$version)\\";cd ${ProjectRoot}/${jarFilePath};curl -fL -o ${ProjectRoot}/${jarFilePath}/Dockerfile http://10.12.54.1/Dockerfile;echo $version;docker build -t ${dockerImageServer_exter}/baseimages/${dockerImageName}:$version .;docker push ${dockerImageServer_exter}/baseimages/${dockerImageName}:$version;rm -rf ${ProjectRoot}/${jarFilePath}/Dockerfile; fi",
 
 ![jenkins-project](/static/2020-09/jenkins-project.png)
 
