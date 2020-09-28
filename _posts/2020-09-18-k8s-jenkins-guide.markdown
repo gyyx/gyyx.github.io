@@ -26,7 +26,7 @@ categories: dev
 ### 部署系统
 这是内部开发的一套系统，作用有以下几点
 1. 提供外部接口，实现为Jenkins中为Dockfile打标签阶段时提供下版本号，目前为4位（0.0.0.0，第1位是项目版本，第2位是迭代版本，第3位是部署环境，第4位是部署原因），前提是需要在部署系统中进行相关的配置；
-2. 将打好标签的Dockerfile push到外网环境，以及进行跨部门的调用接口；
+2. 将打好标签的Dockerfile push到外网环境以及进行跨部门的接口调用；
 
 
 ## 构建的具体实现
@@ -38,12 +38,12 @@ categories: dev
 项目根目录下的Jenkinsfile需要配置projectlist，实现在构建时选择哪个站点进行构建，文件内容如下：
 ![Jenkinsfile](/static/2020-09/Jenkinsfile.png)
 project-list.yaml的key和value分别对应的是下拉选项的显示项和实际值（参考下图），其中value的值，为仓库根目录下的子目录层级的文件夹名称，并且在其目录下要存在jenkins-project.json文件，每一个想要构建的站点目录的下
-json文件都是相互独立的，可个性化配置，这也是和之前的构建方式不同的一个地方，之前都是仓库下仅存在一份jenkins-project.json文件，所有需要构建的站点的部署方案通通写在里面，而且绝大多数会存在2种，部署内网和部署外网，
+json文件都是相互独立的，可个性化配置，这也是和之前的构建方式不同的一个地方，之前都是仓库下仅存在一份jenkins-project.json文件，所有需要构建的站点的部署方案通通写在里面，而且绝大多数单个站点就会存在2种（部署内网和部署外网），
 文件内容易重复、易混淆
 ![project-list](/static/2020-09/project-list.png)
 下面，针对某一个站点的jenkins-project.json配置文件做下说明：  
 1. 文件全局语法需要满足json的key-value形式，其中value可为字符串或者对象；  
-2. RuntimeVariable中的变量PROJECT_VERSION为调用上文提到的部署接口发送HTTP Get请求来获得，拿到的结果为4位版本号，不过需要提前在部署系统中对${PROJECT_VERSION}进行相关配置，如下；  
+2. RuntimeVariable中的变量PROJECT_VERSION为调用上文提到的部署接口发送HTTP Get请求来获得，拿到的结果为4位版本号，不过需要提前在部署系统中对用来获取${PROJECT_VERSION}的域名进行相关配置，如下；  
    * 创建域名，分发机类型linux，自定义文件路径填写系统部的镜像路径；  
    * 为域名分配所属项目，如果没有，需要新建（创建完成后，记得还需要创建立项报告）；  
    * 在xx.xx.xx.xx的/data/JavaBuild/build 目录下创建和域名同名的文件夹，里面需要放置一个ROOT.war，可为空；  
