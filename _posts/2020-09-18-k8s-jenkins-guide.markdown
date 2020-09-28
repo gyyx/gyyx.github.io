@@ -18,7 +18,7 @@ categories: dev
 
 ### Jenkins
 1. 开启用户管理：用户注册、游客不可访问、分配用户权限（采用安全矩阵）；
-2. 更改系统配置：配置类库地址（上面提到的jenkins-json-build）、设置邮件通知（在系统管理-系统设置-系统管理员邮件地址 这里写上邮件地址，这个是发件人；在系统管理-系统设置-Extended E-mail Notification-SMTP server 这里写上邮箱服务器地址；在系统管理-系统设置-Extended E-mail Notification-高级 勾上Use SMTP Authentication，填写发件人邮箱和密码，注意这个邮箱 一定得和系统管理员邮件地址邮件地址相同，切记！）
+2. 更改系统配置：配置类库地址（上面提到的jenkins-json-build）、设置邮件通知（在系统管理-系统设置-系统管理员邮件地址 这里写上邮件地址，这个是发件人；在系统管理-系统设置-Extended E-mail Notification-SMTP server 这里写上邮箱服务器地址；在系统管理-系统设置-Extended E-mail Notification-高级 勾上Use SMTP Authentication，填写发件人邮箱和密码，注意这个邮箱 一定得和系统管理员邮件地址相同，切记！）
 3. 主要涉及的插件安装：Kubernetes、Git相关（Git、Git Parameter）、Pipeline相关、SSH相关；
 4. 视图管理：将同一项目的各个构建分配在同一视图下；
 5. 节点管理：将要使用到的机器通过Launch agents via SSH进行连接；
