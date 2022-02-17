@@ -57,3 +57,8 @@ categories: dev
 2. 程序内不要出现select *，要指明具体字段
 3. 线上程序不要使用 模糊查询，会非常影响性能
 4. 目前springboot项目的数据库连接池推荐为druid-spring-boot-starter的1.1.20版本
+
+
+## 数据库同步规划示例
+
+![database](/static/2022-02/db_demo.png)
