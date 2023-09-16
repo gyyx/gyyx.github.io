@@ -1,4 +1,10 @@
 _site
 .sass-cache
 .jekyll-metadata
+.jekyll-cache
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
 .vs
