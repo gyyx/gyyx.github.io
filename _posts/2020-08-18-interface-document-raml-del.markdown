@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "友善的接口文档"
+title:  "友善的接口文档【已废弃】"
 date:   2020-08-18 8:18:18 +0800
 categories: dev
 ---
