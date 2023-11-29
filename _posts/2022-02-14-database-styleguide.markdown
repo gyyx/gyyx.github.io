@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "数据库规范 V1.0"
-date:   2022-02-14 09:40:27 +0800
+title:  "数据库规范 V1.1"
+date:   2023-11-29 15:20:32 +0800
 categories: dev
 ---
 
