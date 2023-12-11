@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Java开发规范指南 V1.1"
+title:  "Java开发规范指南 V1.2"
 date:   2020-07-29 09:40:27 +0800
 categories: dev
 ---
@@ -25,7 +25,7 @@ Java语言开发有众多的IDE可以使用，但在团队内部为了统一标�
 
 ### 线上环境
 
-目前我们线上统一使用kubernetes来做环境部署，也就是所有发布的产品包都要基于Docker来进行分发。Java的项目的Docker基础包为 gyyx/centos7-jdk:oracle-8u192。如果是新项目我们建议尽量使用SpringBoot框架来进行开发。
+目前我们线上统一使用kubernetes来做环境部署，也就是所有发布的产品包都要基于Docker来进行分发。Java的项目的Docker基础包为 gyyx/debian11-jdk11:1.0。如果是新项目我们建议尽量使用SpringBoot框架来进行开发,引用gydev-dependencies最新稳定版本
 
 ## 语法规范
 
@@ -43,7 +43,7 @@ Java语言开发有众多的IDE可以使用，但在团队内部为了统一标�
 8. 对于实体类不用依次书写属性的get\set方法，请直接引用lombok组件
 
 ``` java
-java项目
+java项目(游戏)
     1. 控制层：UserController.java
     2. 逻辑层：UserService.java; UserServiceImpl.java
     3. 业务层：UserBll.java / UserReaderBll.java / UserWriterBll.java ;  UserBllImpl.java / UserReaderBllImpl.java / UserWriterBllImpl.java
@@ -253,7 +253,7 @@ java项目
 6. 定时任务新项目使用xxl-job,老项目逐步从spring task转移到xxl-job，定时任务必须使用独立的服务
 7. 持久层框架使用基于注解的mybatis,不能使用一些更高级的工具例如tk之类的
 8. 同一业务不同服务之间dao和beans使用这个业务的公共项目，如果发现共用逻辑也需要抽离到公共项目
-9. 分层架构
+9. 分层架构（出行）
   表现层 接受和响应
   服务层 用来做业务的统一编排
   通用业务层 包含第三方接口封装，以及缓存、mq等操作封装，以及组装多个dao
@@ -296,7 +296,8 @@ log4j2.xml 日志配置文件
 
 ### 项目命名规范
 
-1. GroupID格式： cn.gyyx.业务线，三级构成，如果非光宇公司业务，请使用相应公司顶级域名倒转使用。
+1. GroupID格式： cn.公司名.业务线，三级构成，如果非光宇公司业务，请使用相应公司顶级域名倒转使用，例如 光宇游戏cn.gyyx.业务线，光宇出行cn.costrip.业务线
+               如果是光宇通用cn.gydev.业务线。
 2. ArtifactID格式：产品名-模块名。如 账号业务下的对外接口  account-api
 3. Version格式: 使用三位分割 主版本号.次版本号.修订号
     1. 主版本号：当然项目发生大的变更时进行升级，由部门级别决定
